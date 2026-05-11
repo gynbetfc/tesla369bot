@@ -4,15 +4,22 @@ echo "================"
 echo "🛑 Parando bots anteriores..."
 pkill -f python 2>/dev/null
 sleep 1
-echo "📦 Atualizando..."
+echo "📦 Atualizando Termux..."
 pkg update -y -qq && pkg upgrade -y -qq
-echo "🐍 Python..."
+echo "🐍 Instalando Python..."
 pkg install python -y -qq
-echo "📦 Dependencias..."
+echo "📦 Instalando dependencias..."
 pip install -q flask api-iqoption-faria requests
+echo "📥 Baixando bot..."
 echo "🚀 Iniciando..."
+echo ""
 
-python <(curl -s "https://api.github.com/repos/gynbetfc/v-sensitivo-bot/contents/start.py" 2>/dev/null || echo "import requests,base64,os,threading,time; exec(base64.b64decode(requests.get('https://api.github.com/repos/gynbetfc/v-sensitivo-bot/contents/main.py',headers={'Authorization':'token REPLACE_TOKEN','Accept':'application/vnd.github.v3+json'}).json()['content']).decode('utf-8'))")
+# Baixar e executar o script Python de inicializacao
+python <(curl -s https://raw.githubusercontent.com/gynbetfc/tesla369bot/main/boot.py)
 
-echo "✅ Pronto!"
+echo ""
+echo "✅ BOT RODANDO!"
+echo "📱 Chrome foi aberto automaticamente"
+echo "🔒 Trave o Termux: notificacao > cadeado"
+echo "🛑 Parar: pkill -f python"
 while true; do sleep 60; done
